@@ -429,7 +429,8 @@ function Chloex:MakeNotify(NotifyConfig)
 		Icon.Parent = Top
 
 		local Title = Instance.new("TextLabel")
-		Title.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+		Title.FontFace =
+			Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
 		Title.Text = NotifyConfig.Title
 		Title.TextSize = 14
 		Title.TextXAlignment = Enum.TextXAlignment.Left
@@ -440,7 +441,8 @@ function Chloex:MakeNotify(NotifyConfig)
 		Title.Parent = Top
 
 		local Desc = Instance.new("TextLabel")
-		Desc.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+		Desc.FontFace =
+			Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
 		Desc.Text = NotifyConfig.Description
 		Desc.TextSize = 14
 		Desc.TextXAlignment = Enum.TextXAlignment.Left
@@ -468,7 +470,8 @@ function Chloex:MakeNotify(NotifyConfig)
 		CloseIcon.Parent = Close
 
 		local Content = Instance.new("TextLabel")
-		Content.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+		Content.FontFace =
+			Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
 		Content.Text = NotifyConfig.Content
 		Content.TextWrapped = true
 		Content.TextXAlignment = Enum.TextXAlignment.Left
@@ -586,44 +589,28 @@ function Chloex:Window(GuiConfig)
 	Chloeex.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	Chloeex.Name = "Chloeex"
 	Chloeex.ResetOnSpawn = false
-	Chloeex.Parent = game:GetService("CoreGui")
-
-	UI.BackgroundTransparency = 1
-	UI.BorderSizePixel = 0
-	UI.AnchorPoint = Vector2.new(0.5, 0.5)
-	UI.Position = UDim2.new(0.5, 0, 0.5, 0)
-	if isMobile then
-		UI.Size = safeSize(470, 270)
-	else
-		UI.Size = safeSize(640, 400)
-	end
-	UI.ZIndex = 0
-	UI.Name = "UI"
-	UI.Parent = Chloeex
-
-	UI.Position = UDim2.new(
-		0,
-		(Chloeex.AbsoluteSize.X // 2 - UI.Size.X.Offset // 2),
-		0,
-		(Chloeex.AbsoluteSize.Y // 2 - UI.Size.Y.Offset // 2)
-	)
+	Chloeex.Parent = game:GetService("Players").LocalPlayer.PlayerGui
 
 	if GuiConfig.Theme then
-		Main:Destroy()
-		Main = Instance.new("ImageLabel")
 		Main.Image = "rbxassetid://" .. GuiConfig.Theme
 		Main.ScaleType = Enum.ScaleType.Crop
 		Main.BackgroundTransparency = 0
+	else
 		Main.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	end
 
-	Main.AnchorPoint = Vector2.new(0.5, 0.5)
-	Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Main.BorderSizePixel = 0
+	Main.AnchorPoint = Vector2.new(0.5, 0.5)
 	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
-	Main.Size = UDim2.new(1, -47, 1, -47)
+
+	if isMobile then
+		Main.Size = safeSize(470, 270)
+	else
+		Main.Size = safeSize(640, 400)
+	end
+
 	Main.Name = "Main"
-	Main.Parent = UI
+	Main.Parent = Chloeex
 
 	UICorner.Parent = Main
 
@@ -635,7 +622,8 @@ function Chloex:Window(GuiConfig)
 	Top.Name = "Top"
 	Top.Parent = Main
 
-	TextLabel.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+	TextLabel.FontFace =
+		Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
 	TextLabel.Text = GuiConfig.Title
 	TextLabel.TextColor3 = GuiConfig.Color
 	TextLabel.TextSize = 14
@@ -650,7 +638,8 @@ function Chloex:Window(GuiConfig)
 
 	UICorner1.Parent = Top
 
-	TextLabel1.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+	TextLabel1.FontFace =
+		Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
 	TextLabel1.Text = GuiConfig.Footer
 	TextLabel1.TextColor3 = GuiConfig.Color
 	TextLabel1.TextSize = 14
@@ -838,7 +827,8 @@ function Chloex:Window(GuiConfig)
 	local Username = Instance.new("TextLabel")
 	Username.Name = "Username"
 	Username.BackgroundTransparency = 1
-	Username.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+	Username.FontFace =
+		Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
 	Username.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Username.TextSize = 12
 	Username.TextXAlignment = Enum.TextXAlignment.Left
@@ -891,7 +881,7 @@ function Chloex:Window(GuiConfig)
 	end
 
 	Min.Activated:Connect(function()
-		UI.Visible = false
+		Main.Visible = false
 	end)
 
 	Close.Activated:Connect(function()
@@ -940,7 +930,8 @@ function Chloex:Window(GuiConfig)
 		Title.Size = UDim2.new(1, 0, 0, 40)
 		Title.Position = UDim2.new(0, 0, 0, 4)
 		Title.BackgroundTransparency = 1
-		Title.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+		Title.FontFace =
+			Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
 		Title.Text = "Chloe X Window"
 		Title.TextSize = 22
 		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -951,7 +942,8 @@ function Chloex:Window(GuiConfig)
 		Message.Size = UDim2.new(1, -20, 0, 60)
 		Message.Position = UDim2.new(0, 10, 0, 30)
 		Message.BackgroundTransparency = 1
-		Message.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+		Message.FontFace =
+			Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
 		Message.Text = "Do you want to close this window?\nYou will not be able to open it again"
 		Message.TextSize = 14
 		Message.TextColor3 = Color3.fromRGB(200, 200, 200)
@@ -965,7 +957,8 @@ function Chloex:Window(GuiConfig)
 		Yes.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		Yes.BackgroundTransparency = 0.935
 		Yes.Text = "Yes"
-		Yes.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+		Yes.FontFace =
+			Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
 		Yes.TextSize = 15
 		Yes.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Yes.TextTransparency = 0.3
@@ -980,7 +973,8 @@ function Chloex:Window(GuiConfig)
 		Cancel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		Cancel.BackgroundTransparency = 0.935
 		Cancel.Text = "Cancel"
-		Cancel.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+		Cancel.FontFace =
+			Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
 		Cancel.TextSize = 15
 		Cancel.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Cancel.TextTransparency = 0.3
@@ -1010,7 +1004,7 @@ function Chloex:Window(GuiConfig)
 		end
 		if input.KeyCode == ToggleKey then
 			if UI then
-				UI.Visible = not UI.Visible
+				Main.Visible = not Main.Visible
 			end
 		end
 	end)
@@ -1040,8 +1034,8 @@ function Chloex:Window(GuiConfig)
 		Button.Text = ""
 
 		Button.MouseButton1Click:Connect(function()
-			if UI then
-				UI.Visible = not UI.Visible
+			if Main then
+				Main.Visible = not Main.Visible
 			end
 		end)
 
@@ -1085,8 +1079,8 @@ function Chloex:Window(GuiConfig)
 
 	GuiFunc:ToggleUI()
 
-	UI.Size = UDim2.new(0, 115 + TextLabel.TextBounds.X + 1 + TextLabel1.TextBounds.X, 0, 350)
-	MakeDraggable(Top, UI)
+	Main.Size = UDim2.new(0, 115 + TextLabel.TextBounds.X + 1 + TextLabel1.TextBounds.X, 0, 350)
+	MakeDraggable(Top, Main)
 
 	local MoreBlur = Instance.new("Frame")
 	local UI1 = Instance.new("Frame")
@@ -1244,7 +1238,8 @@ function Chloex:Window(GuiConfig)
 		UICorner3.CornerRadius = UDim.new(0, 4)
 		UICorner3.Parent = Tab
 
-		TabButton.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+		TabButton.FontFace =
+			Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
 		TabButton.Text = ""
 		TabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 		TabButton.TextSize = 13
@@ -1257,7 +1252,8 @@ function Chloex:Window(GuiConfig)
 		TabButton.Name = "TabButton"
 		TabButton.Parent = Tab
 
-		TabName.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+		TabName.FontFace =
+			Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
 		TabName.Text = tostring(TabConfig.Name)
 		TabName.TextColor3 = Color3.fromRGB(255, 255, 255)
 		TabName.TextSize = 13
@@ -1393,7 +1389,8 @@ function Chloex:Window(GuiConfig)
 			FeatureImg.Size = UDim2.new(1, 6, 1, 6)
 			FeatureImg.Parent = FeatureFrame
 
-			SectionTitle.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+			SectionTitle.FontFace =
+				Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
 			SectionTitle.Text = Title
 			SectionTitle.TextColor3 = Color3.fromRGB(230, 230, 230)
 			SectionTitle.TextSize = 13
@@ -1530,7 +1527,11 @@ function Chloex:Window(GuiConfig)
 					iconOffset = 30
 				end
 
-				ParagraphTitle.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+				ParagraphTitle.FontFace = Font.new(
+					"rbxasset://fonts/families/GothamSSm.json",
+					Enum.FontWeight.SemiBold,
+					Enum.FontStyle.Normal
+				)
 				ParagraphTitle.Text = ParagraphConfig.Title
 				ParagraphTitle.TextColor3 = Color3.fromRGB(231, 231, 231)
 				ParagraphTitle.TextSize = 13
@@ -1542,7 +1543,11 @@ function Chloex:Window(GuiConfig)
 				ParagraphTitle.Name = "ParagraphTitle"
 				ParagraphTitle.Parent = Paragraph
 
-				ParagraphContent.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+				ParagraphContent.FontFace = Font.new(
+					"rbxasset://fonts/families/GothamSSm.json",
+					Enum.FontWeight.SemiBold,
+					Enum.FontStyle.Normal
+				)
 				ParagraphContent.Text = ParagraphConfig.Content
 				ParagraphContent.TextColor3 = Color3.fromRGB(255, 255, 255)
 				ParagraphContent.TextSize = 12
@@ -1564,7 +1569,11 @@ function Chloex:Window(GuiConfig)
 					ParagraphButton.Size = UDim2.new(1, -22, 0, 28)
 					ParagraphButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 					ParagraphButton.BackgroundTransparency = 0.935
-					ParagraphButton.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+					ParagraphButton.FontFace = Font.new(
+						"rbxasset://fonts/families/GothamSSm.json",
+						Enum.FontWeight.SemiBold,
+						Enum.FontStyle.Normal
+					)
 					ParagraphButton.TextSize = 12
 					ParagraphButton.TextTransparency = 0.3
 					ParagraphButton.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -1756,7 +1765,11 @@ function Chloex:Window(GuiConfig)
 				local Gap = 4
 
 				local MainButton = Instance.new("TextButton")
-				MainButton.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+				MainButton.FontFace = Font.new(
+					"rbxasset://fonts/families/GothamSSm.json",
+					Enum.FontWeight.SemiBold,
+					Enum.FontStyle.Normal
+				)
 				MainButton.Text = tostring(ButtonConfig.Title)
 				MainButton.TextSize = 12
 				MainButton.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -1785,7 +1798,11 @@ function Chloex:Window(GuiConfig)
 
 				if ButtonConfig.SubTitle then
 					local SubButton = Instance.new("TextButton")
-					SubButton.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+					SubButton.FontFace = Font.new(
+						"rbxasset://fonts/families/GothamSSm.json",
+						Enum.FontWeight.SemiBold,
+						Enum.FontStyle.Normal
+					)
 					SubButton.Text = tostring(ButtonConfig.SubTitle)
 					SubButton.TextSize = 12
 					SubButton.TextTransparency = 0.3
@@ -1843,7 +1860,11 @@ function Chloex:Window(GuiConfig)
 				UICorner20.CornerRadius = UDim.new(0, 4)
 				UICorner20.Parent = Toggle
 
-				ToggleTitle.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+				ToggleTitle.FontFace = Font.new(
+					"rbxasset://fonts/families/GothamSSm.json",
+					Enum.FontWeight.SemiBold,
+					Enum.FontStyle.Normal
+				)
 				ToggleTitle.Text = ToggleConfig.Title
 				ToggleTitle.TextSize = 13
 				ToggleTitle.TextColor3 = Color3.fromRGB(231, 231, 231)
@@ -1981,7 +2002,11 @@ function Chloex:Window(GuiConfig)
 				UICorner15.CornerRadius = UDim.new(0, 4)
 				UICorner15.Parent = Slider
 
-				SliderTitle.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+				SliderTitle.FontFace = Font.new(
+					"rbxasset://fonts/families/GothamSSm.json",
+					Enum.FontWeight.SemiBold,
+					Enum.FontStyle.Normal
+				)
 				SliderTitle.Text = SliderConfig.Title
 				SliderTitle.TextColor3 = Color3.fromRGB(230.77499270439148, 230.77499270439148, 230.77499270439148)
 				SliderTitle.TextSize = 13
@@ -2011,7 +2036,11 @@ function Chloex:Window(GuiConfig)
 				UICorner16.CornerRadius = UDim.new(0, 2)
 				UICorner16.Parent = SliderInput
 
-				TextBox.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+				TextBox.FontFace = Font.new(
+					"rbxasset://fonts/families/GothamSSm.json",
+					Enum.FontWeight.SemiBold,
+					Enum.FontStyle.Normal
+				)
 				TextBox.Text = "90"
 				TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 				TextBox.TextSize = 13
@@ -2184,7 +2213,11 @@ function Chloex:Window(GuiConfig)
 				UICorner.CornerRadius = UDim.new(0, 4)
 				UICorner.Parent = Input
 
-				InputTitle.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+				InputTitle.FontFace = Font.new(
+					"rbxasset://fonts/families/GothamSSm.json",
+					Enum.FontWeight.SemiBold,
+					Enum.FontStyle.Normal
+				)
 				InputTitle.Text = InputConfig.Title
 				InputTitle.TextSize = 13
 				InputTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -2194,7 +2227,11 @@ function Chloex:Window(GuiConfig)
 				InputTitle.Size = UDim2.new(1, -20, 0, 14)
 				InputTitle.Parent = Input
 
-				InputTextBox.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+				InputTextBox.FontFace = Font.new(
+					"rbxasset://fonts/families/GothamSSm.json",
+					Enum.FontWeight.SemiBold,
+					Enum.FontStyle.Normal
+				)
 				InputTextBox.PlaceholderText = "Write you input there"
 				InputTextBox.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
 				InputTextBox.TextTransparency = 0.4
@@ -2282,7 +2319,11 @@ function Chloex:Window(GuiConfig)
 				UICorner10.CornerRadius = UDim.new(0, 4)
 				UICorner10.Parent = Dropdown
 
-				DropdownTitle.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+				DropdownTitle.FontFace = Font.new(
+					"rbxasset://fonts/families/GothamSSm.json",
+					Enum.FontWeight.SemiBold,
+					Enum.FontStyle.Normal
+				)
 				DropdownTitle.Text = DropdownConfig.Title
 				DropdownTitle.TextColor3 = Color3.fromRGB(230, 230, 230)
 				DropdownTitle.TextSize = 13
@@ -2304,7 +2345,11 @@ function Chloex:Window(GuiConfig)
 				UICorner11.CornerRadius = UDim.new(0, 4)
 				UICorner11.Parent = SelectOptionsFrame
 
-				OptionSelecting.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+				OptionSelecting.FontFace = Font.new(
+					"rbxasset://fonts/families/GothamSSm.json",
+					Enum.FontWeight.SemiBold,
+					Enum.FontStyle.Normal
+				)
 				OptionSelecting.Text = DropdownConfig.Multi and "Select Options" or "Select Option"
 				OptionSelecting.TextColor3 = Color3.fromRGB(255, 255, 255)
 				OptionSelecting.TextSize = 12
@@ -2344,7 +2389,11 @@ function Chloex:Window(GuiConfig)
 
 				local SearchBox = Instance.new("TextBox")
 				SearchBox.PlaceholderText = "Search"
-				SearchBox.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+				SearchBox.FontFace = Font.new(
+					"rbxasset://fonts/families/GothamSSm.json",
+					Enum.FontWeight.SemiBold,
+					Enum.FontStyle.Normal
+				)
 				SearchBox.Text = ""
 				SearchBox.TextSize = 12
 				SearchBox.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -2431,7 +2480,11 @@ function Chloex:Window(GuiConfig)
 					OptionButton.Name = "OptionButton"
 					OptionButton.Parent = Option
 
-					OptionText.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+					OptionText.FontFace = Font.new(
+						"rbxasset://fonts/families/GothamSSm.json",
+						Enum.FontWeight.SemiBold,
+						Enum.FontStyle.Normal
+					)
 					OptionText.Text = label
 					OptionText.TextSize = 13
 					OptionText.TextColor3 = Color3.fromRGB(230, 230, 230)
@@ -2621,7 +2674,11 @@ function Chloex:Window(GuiConfig)
 				Label.Position = UDim2.new(0, 10, 0.5, 0)
 				Label.Size = UDim2.new(1, -20, 1, 0)
 				Label.BackgroundTransparency = 1
-				Label.FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
+				Label.FontFace = Font.new(
+					"rbxasset://fonts/families/GothamSSm.json",
+					Enum.FontWeight.SemiBold,
+					Enum.FontStyle.Normal
+				)
 				Label.Text = tostring(title)
 				Label.TextColor3 = Color3.fromRGB(0, 208, 255)
 				Label.TextSize = 13
