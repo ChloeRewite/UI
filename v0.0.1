@@ -563,9 +563,8 @@ function Chloex:Window(GuiConfig)
 	local GuiFunc = {}
 
 	local Chloeex = Instance.new("ScreenGui")
-	local UI = Instance.new("Frame")
 	local DropShadow = Instance.new("ImageLabel")
-	local Main = Instance.new("Frame")
+	local Main = Instance.new("ImageLabel")
 	local UICorner = Instance.new("UICorner")
 	local Top = Instance.new("Frame")
 	local TextLabel = Instance.new("TextLabel")
@@ -890,7 +889,7 @@ function Chloex:Window(GuiConfig)
 		Overlay.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		Overlay.BackgroundTransparency = 0.3
 		Overlay.ZIndex = 50
-		Overlay.Parent = UI
+		Overlay.Parent = Main
 
 		local Dialog = Instance.new("ImageLabel")
 		Dialog.Size = UDim2.new(0, 300, 0, 150)
