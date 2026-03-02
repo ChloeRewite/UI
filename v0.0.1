@@ -1425,9 +1425,6 @@ function Chloex:Window(GuiConfig)
 			UIListLayout2.SortOrder = Enum.SortOrder.LayoutOrder
 			UIListLayout2.Parent = SectionAdd
 
-			local COLOR_NORMAL = Color3.fromRGB(230, 230, 230)
-			local COLOR_OPEN = Color3.fromRGB(0, 208, 255)
-
 			local OpenSection = false
 
 			local function UpdateSizeScroll()
@@ -1444,7 +1441,6 @@ function Chloex:Window(GuiConfig)
 				if not OpenSection then
 					return
 				end
-				SectionTitle.TextColor3 = COLOR_OPEN
 
 				local SectionSizeY = 30
 				for _, v in SectionAdd:GetChildren() do
@@ -1472,7 +1468,6 @@ function Chloex:Window(GuiConfig)
 			if not AlwaysOpen then
 				SectionButton.Activated:Connect(function()
 					if OpenSection then
-						SectionTitle.TextColor3 = COLOR_NORMAL
 						TweenService:Create(FeatureFrame, TweenInfo.new(0.3), { Rotation = 0 }):Play()
 						TweenService:Create(Section, TweenInfo.new(0.3), { Size = UDim2.new(1, 0, 0, 30) }):Play()
 						TweenService:Create(SectionAdd, TweenInfo.new(0.3), { Size = UDim2.new(1, 0, 0, 0) }):Play()
