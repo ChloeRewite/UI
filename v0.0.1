@@ -1210,18 +1210,48 @@ function Chloex:Window(GuiConfig)
 		TabConfig.Section = TabConfig.Section or "Default"
 
 		if not SidebarSections[TabConfig.Section] then
-			local SectionLabel = Instance.new("TextLabel")
-			SectionLabel.Size = UDim2.new(1, -20, 0, 18)
-			SectionLabel.BackgroundTransparency = 1
-			SectionLabel.Text = string.upper(TabConfig.Section)
-			SectionLabel.TextColor3 = Color3.fromRGB(150, 150, 150)
-			SectionLabel.TextSize = 12
-			SectionLabel.TextXAlignment = Enum.TextXAlignment.Left
-			SectionLabel.Position = UDim2.new(0, 10, 0, 0)
-			SectionLabel.LayoutOrder = SidebarOrder
-			SectionLabel.Parent = ScrollTab
+			local SectionFrame = Instance.new("Frame")
+			SectionFrame.Size = UDim2.new(1, -20, 0, 22)
+			SectionFrame.BackgroundTransparency = 1
+			SectionFrame.LayoutOrder = SidebarOrder
+			SectionFrame.Parent = ScrollTab
 
-			SidebarSections[TabConfig.Section] = true
+			local SectionButton = Instance.new("TextButton")
+			SectionButton.Size = UDim2.new(1, 0, 1, 0)
+			SectionButton.BackgroundTransparency = 1
+			SectionButton.Text = string.upper(TabConfig.Section)
+			SectionButton.TextColor3 = Color3.fromRGB(150, 150, 150)
+			SectionButton.TextSize = 12
+			SectionButton.TextXAlignment = Enum.TextXAlignment.Left
+			SectionButton.Parent = SectionFrame
+
+			local Arrow = Instance.new("ImageLabel")
+			Arrow.Size = UDim2.new(0, 14, 0, 14)
+			Arrow.Position = UDim2.new(1, -15, 0.5, -7)
+			Arrow.BackgroundTransparency = 1
+			Arrow.Image = "rbxassetid://16851841101"
+			Arrow.Rotation = 90
+			Arrow.Parent = SectionButton
+
+			SidebarSections[TabConfig.Section] = {
+				Open = true,
+				Tabs = {},
+				Arrow = Arrow,
+			}
+
+			SectionButton.MouseButton1Click:Connect(function()
+				local data = SidebarSections[TabConfig.Section]
+				data.Open = not data.Open
+
+				TweenService:Create(data.Arrow, TweenInfo.new(0.2), {
+					Rotation = data.Open and 90 or -90,
+				}):Play()
+
+				for _, tab in ipairs(data.Tabs) do
+					tab.Visible = data.Open
+				end
+			end)
+
 			SidebarOrder += 1
 		end
 
@@ -1270,6 +1300,9 @@ function Chloex:Window(GuiConfig)
 		TabName.TextColor3 = (CountTab == 0) and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(93, 93, 93)
 		TabName.Name = "TabName"
 		TabName.Parent = Tab
+
+		table.insert(SidebarSections[TabConfig.Section].Tabs, Tab)
+		Tab.Visible = SidebarSections[TabConfig.Section].Open
 
 		SidebarOrder += 1
 
