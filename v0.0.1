@@ -476,7 +476,7 @@ function Chloex:MakeNotify(NotifyConfig)
 		Content.TextWrapped = true
 		Content.TextXAlignment = Enum.TextXAlignment.Left
 		Content.TextYAlignment = Enum.TextYAlignment.Top
-		Content.TextSize = 13
+		Content.TextSize = 14
 		Content.BackgroundTransparency = 1
 		Content.TextColor3 = Color3.fromRGB(150, 150, 150)
 		Content.Position = UDim2.new(0, 38, 0, 27)
@@ -599,12 +599,13 @@ function Chloex:Window(GuiConfig)
 		Main.ImageTransparency = 0
 	else
 		Main.Image = ""
-		Main.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-		Main.BackgroundTransparency = 0
+		Main.BackgroundColor3 = Color3.fromRGB(12, 12, 12)
+		Main.BackgroundTransparency = 0.05
 	end
 
 	Main.BorderSizePixel = 0
-	Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Main.BackgroundTransparency = 0.05
+	Main.BorderColor3 = Color3.fromRGB(12, 12, 12)
 	Main.AnchorPoint = Vector2.new(0.5, 0.5)
 	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 
@@ -1246,7 +1247,7 @@ function Chloex:Window(GuiConfig)
 			Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
 		TabButton.Text = ""
 		TabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-		TabButton.TextSize = 13
+		TabButton.TextSize = 14
 		TabButton.TextXAlignment = Enum.TextXAlignment.Left
 		TabButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		TabButton.BackgroundTransparency = 0.9990000128746033
@@ -1260,7 +1261,7 @@ function Chloex:Window(GuiConfig)
 			Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
 		TabName.Text = tostring(TabConfig.Name)
 		TabName.TextColor3 = Color3.fromRGB(255, 255, 255)
-		TabName.TextSize = 13
+		TabName.TextSize = 14
 		TabName.TextXAlignment = Enum.TextXAlignment.Left
 		TabName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		TabName.BackgroundTransparency = 0.9990000128746033
@@ -1397,7 +1398,7 @@ function Chloex:Window(GuiConfig)
 				Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
 			SectionTitle.Text = Title
 			SectionTitle.TextColor3 = Color3.fromRGB(230, 230, 230)
-			SectionTitle.TextSize = 13
+			SectionTitle.TextSize = 14
 			SectionTitle.TextXAlignment = Enum.TextXAlignment.Left
 			SectionTitle.AnchorPoint = Vector2.new(0, 0.5)
 			SectionTitle.BackgroundTransparency = 1
@@ -1538,7 +1539,7 @@ function Chloex:Window(GuiConfig)
 				)
 				ParagraphTitle.Text = ParagraphConfig.Title
 				ParagraphTitle.TextColor3 = Color3.fromRGB(231, 231, 231)
-				ParagraphTitle.TextSize = 13
+				ParagraphTitle.TextSize = 14
 				ParagraphTitle.TextXAlignment = Enum.TextXAlignment.Left
 				ParagraphTitle.TextYAlignment = Enum.TextYAlignment.Top
 				ParagraphTitle.BackgroundTransparency = 1
@@ -1700,7 +1701,7 @@ function Chloex:Window(GuiConfig)
 					Button.BackgroundTransparency = 0.85
 					Button.Text = "Copy Discord"
 					Button.Font = Enum.Font.MontserratBold
-					Button.TextSize = 13
+					Button.TextSize = 14
 					Button.TextColor3 = Color3.fromRGB(255, 255, 255)
 					Button.Parent = Panel
 					Instance.new("UICorner", Button).CornerRadius = UDim.new(0, 8)
@@ -1717,7 +1718,7 @@ function Chloex:Window(GuiConfig)
 					DiscordButton.BackgroundTransparency = 0.85
 					DiscordButton.Text = "Discord Ugphone"
 					DiscordButton.Font = Enum.Font.MontserratBold
-					DiscordButton.TextSize = 13
+					DiscordButton.TextSize = 14
 					DiscordButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 					DiscordButton.Parent = Panel
 					Instance.new("UICorner", DiscordButton).CornerRadius = UDim.new(0, 8)
@@ -1734,7 +1735,7 @@ function Chloex:Window(GuiConfig)
 					LinkButton.BackgroundTransparency = 0.85
 					LinkButton.Text = "Link Ugphone"
 					LinkButton.Font = Enum.Font.MontserratBold
-					LinkButton.TextSize = 13
+					LinkButton.TextSize = 14
 					LinkButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 					LinkButton.Parent = Panel
 					Instance.new("UICorner", LinkButton).CornerRadius = UDim.new(0, 8)
@@ -1870,7 +1871,7 @@ function Chloex:Window(GuiConfig)
 					Enum.FontStyle.Normal
 				)
 				ToggleTitle.Text = ToggleConfig.Title
-				ToggleTitle.TextSize = 13
+				ToggleTitle.TextSize = 14
 				ToggleTitle.TextColor3 = Color3.fromRGB(231, 231, 231)
 				ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
 				ToggleTitle.TextYAlignment = Enum.TextYAlignment.Top
@@ -2013,7 +2014,7 @@ function Chloex:Window(GuiConfig)
 				)
 				SliderTitle.Text = SliderConfig.Title
 				SliderTitle.TextColor3 = Color3.fromRGB(230.77499270439148, 230.77499270439148, 230.77499270439148)
-				SliderTitle.TextSize = 13
+				SliderTitle.TextSize = 14
 				SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
 				SliderTitle.TextYAlignment = Enum.TextYAlignment.Top
 				SliderTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2047,7 +2048,7 @@ function Chloex:Window(GuiConfig)
 				)
 				TextBox.Text = "90"
 				TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-				TextBox.TextSize = 13
+				TextBox.TextSize = 14
 				TextBox.TextWrapped = true
 				TextBox.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 				TextBox.BackgroundTransparency = 0.9990000128746033
@@ -2223,7 +2224,7 @@ function Chloex:Window(GuiConfig)
 					Enum.FontStyle.Normal
 				)
 				InputTitle.Text = InputConfig.Title
-				InputTitle.TextSize = 13
+				InputTitle.TextSize = 14
 				InputTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 				InputTitle.TextXAlignment = Enum.TextXAlignment.Left
 				InputTitle.BackgroundTransparency = 1
@@ -2330,7 +2331,7 @@ function Chloex:Window(GuiConfig)
 				)
 				DropdownTitle.Text = DropdownConfig.Title
 				DropdownTitle.TextColor3 = Color3.fromRGB(230, 230, 230)
-				DropdownTitle.TextSize = 13
+				DropdownTitle.TextSize = 14
 				DropdownTitle.TextXAlignment = Enum.TextXAlignment.Left
 				DropdownTitle.BackgroundTransparency = 1
 				DropdownTitle.Position = UDim2.new(0, 10, 0, 0)
@@ -2490,7 +2491,7 @@ function Chloex:Window(GuiConfig)
 						Enum.FontStyle.Normal
 					)
 					OptionText.Text = label
-					OptionText.TextSize = 13
+					OptionText.TextSize = 14
 					OptionText.TextColor3 = Color3.fromRGB(230, 230, 230)
 					OptionText.Position = UDim2.new(0, 8, 0, 8)
 					OptionText.Size = UDim2.new(1, -100, 0, 13)
@@ -2685,7 +2686,7 @@ function Chloex:Window(GuiConfig)
 				)
 				Label.Text = tostring(title)
 				Label.TextColor3 = Color3.fromRGB(0, 208, 255)
-				Label.TextSize = 13
+				Label.TextSize = 14
 				Label.TextXAlignment = Enum.TextXAlignment.Left
 
 				CountItem = CountItem + 1
