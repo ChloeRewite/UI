@@ -588,7 +588,7 @@ function Chloex:Window(GuiConfig)
 	Chloeex.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	Chloeex.Name = "Chloeex"
 	Chloeex.ResetOnSpawn = false
-	Chloeex.Parent = game:GetService("Players").LocalPlayer.PlayerGui
+	Chloeex.Parent = game:GetService("CoreGui")
 
 	if GuiConfig.Theme then
 		Main.Image = "rbxassetid://" .. GuiConfig.Theme
