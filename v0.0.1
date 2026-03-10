@@ -535,6 +535,24 @@ function chloex(msg, delay, color, title, desc)
 	})
 end
 
+function PressEffect(Button)
+	local TweenService = game:GetService("TweenService")
+
+	local tweenInfo = TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+
+	local press = TweenService:Create(Button, tweenInfo, {
+		Size = Button.Size - UDim2.new(0, 2, 0, 2),
+	})
+
+	local release = TweenService:Create(Button, tweenInfo, {
+		Size = Button.Size,
+	})
+
+	press:Play()
+	press.Completed:Wait()
+	release:Play()
+end
+
 function Chloex:Window(GuiConfig)
 	GuiConfig = GuiConfig or {}
 	GuiConfig.Title = GuiConfig.Title or "Chloe X"
