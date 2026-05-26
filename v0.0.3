@@ -1583,24 +1583,15 @@ function Chloex:Window(GuiConfig)
 			local Items = {}
 			local CountItem = 0
 
-			local function ApplyAccent(text)
-				local r = math.floor(GuiConfig.Color.R * 255)
-				local g = math.floor(GuiConfig.Color.G * 255)
-				local b = math.floor(GuiConfig.Color.B * 255)
-				local hex = string.format("#%02X%02X%02X", r, g, b)
-				return text:gsub("<color>", '<font color="' .. hex .. '">')
-					:gsub("</color>", "</font>")
-					:gsub("</>", "</font>")
-			end
-
 			function Items:AddParagraph(ParagraphConfig)
 				local ParagraphConfig = ParagraphConfig or {}
+				ParagraphConfig.Title = ParagraphConfig.Title or "Title"
 				ParagraphConfig.Content = ParagraphConfig.Content or "Content"
-				local hasTitle = ParagraphConfig.Title and ParagraphConfig.Title ~= ""
 				local ParagraphFunc = {}
 
 				local Paragraph = Instance.new("Frame")
 				local UICorner14 = Instance.new("UICorner")
+				local ParagraphTitle = Instance.new("TextLabel")
 				local ParagraphContent = Instance.new("TextLabel")
 
 				Paragraph.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1622,38 +1613,42 @@ function Chloex:Window(GuiConfig)
 					IconImg.BackgroundTransparency = 1
 					IconImg.Name = "ParagraphIcon"
 					IconImg.Parent = Paragraph
-					IconImg.Image = ParagraphConfig.Icon
+
+					if Icons and Icons[ParagraphConfig.Icon] then
+						IconImg.Image = Icons[ParagraphConfig.Icon]
+					else
+						IconImg.Image = ParagraphConfig.Icon
+					end
+
 					iconOffset = 30
 				end
 
-				if hasTitle then
-					local ParagraphTitle = Instance.new("TextLabel")
-					ParagraphTitle.Font = Enum.Font.GothamBold
-					ParagraphTitle.Text = ParagraphConfig.Title
-					ParagraphTitle.TextColor3 = GuiConfig.Color
-					ParagraphTitle.TextSize = 13
-					ParagraphTitle.TextXAlignment = Enum.TextXAlignment.Left
-					ParagraphTitle.TextYAlignment = Enum.TextYAlignment.Top
-					ParagraphTitle.BackgroundTransparency = 1
-					ParagraphTitle.Position = UDim2.new(0, iconOffset, 0, 8)
-					ParagraphTitle.Size = UDim2.new(1, -16, 0, 13)
-					ParagraphTitle.Name = "ParagraphTitle"
-					ParagraphTitle.Parent = Paragraph
-				end
+				ParagraphTitle.Font = Enum.Font.GothamBold
+				ParagraphTitle.Text = ParagraphConfig.Title
+				ParagraphTitle.TextColor3 = GuiConfig.Color
+				ParagraphTitle.TextSize = 13
+				ParagraphTitle.TextXAlignment = Enum.TextXAlignment.Left
+				ParagraphTitle.TextYAlignment = Enum.TextYAlignment.Top
+				ParagraphTitle.BackgroundTransparency = 1
+				ParagraphTitle.Position = UDim2.new(0, iconOffset, 0, 10)
+				ParagraphTitle.Size = UDim2.new(1, -16, 0, 13)
+				ParagraphTitle.Name = "ParagraphTitle"
+				ParagraphTitle.Parent = Paragraph
 
 				ParagraphContent.Font = Enum.Font.GothamBold
-				ParagraphContent.Text = ApplyAccent(ParagraphConfig.Content)
-				ParagraphContent.TextColor3 = Color3.fromRGB(180, 180, 180)
+				ParagraphContent.Text = ParagraphConfig.Content
+				ParagraphContent.TextColor3 = Color3.fromRGB(255, 255, 255)
 				ParagraphContent.TextSize = 12
 				ParagraphContent.TextXAlignment = Enum.TextXAlignment.Left
 				ParagraphContent.TextYAlignment = Enum.TextYAlignment.Top
 				ParagraphContent.BackgroundTransparency = 1
-				ParagraphContent.Position = hasTitle and UDim2.new(0, iconOffset, 0, 24)
-					or UDim2.new(0, iconOffset, 0, 10)
+				ParagraphContent.Position = UDim2.new(0, iconOffset, 0, 25)
 				ParagraphContent.Name = "ParagraphContent"
-				ParagraphContent.TextWrapped = true
+				ParagraphContent.TextWrapped = false
 				ParagraphContent.RichText = true
 				ParagraphContent.Parent = Paragraph
+
+				ParagraphContent.Size = UDim2.new(1, -16, 0, ParagraphContent.TextBounds.Y)
 
 				local ParagraphButton
 				if ParagraphConfig.ButtonText then
@@ -1668,7 +1663,10 @@ function Chloex:Window(GuiConfig)
 					ParagraphButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 					ParagraphButton.Text = ParagraphConfig.ButtonText
 					ParagraphButton.Parent = Paragraph
-					Instance.new("UICorner", ParagraphButton).CornerRadius = UDim.new(0, 6)
+
+					local btnCorner = Instance.new("UICorner")
+					btnCorner.CornerRadius = UDim.new(0, 6)
+					btnCorner.Parent = ParagraphButton
 
 					if ParagraphConfig.ButtonCallback then
 						ParagraphButton.MouseButton1Click:Connect(ParagraphConfig.ButtonCallback)
@@ -1676,19 +1674,20 @@ function Chloex:Window(GuiConfig)
 				end
 
 				local function UpdateSize()
-					local topPad = hasTitle and 24 or 10
-					local totalHeight = ParagraphContent.TextBounds.Y + topPad + 10
+					local totalHeight = ParagraphContent.TextBounds.Y + 33
 					if ParagraphButton then
 						totalHeight = totalHeight + ParagraphButton.Size.Y.Offset + 5
 					end
-					Paragraph.Size = UDim2.new(1, 0, 0, math.max(totalHeight, hasTitle and 42 or 30))
+					Paragraph.Size = UDim2.new(1, 0, 0, totalHeight)
 				end
 
 				UpdateSize()
+
 				ParagraphContent:GetPropertyChangedSignal("TextBounds"):Connect(UpdateSize)
 
 				function ParagraphFunc:SetContent(content)
-					ParagraphContent.Text = ApplyAccent(content or "")
+					content = content or "Content"
+					ParagraphContent.Text = content
 					UpdateSize()
 				end
 
@@ -2216,7 +2215,7 @@ function Chloex:Window(GuiConfig)
 				Elements[configKey] = SliderFunc
 				return SliderFunc
 			end
-
+			
 			function Items:AddInput(InputConfig)
 				InputConfig = InputConfig or {}
 				InputConfig.Title = InputConfig.Title or "Title"
